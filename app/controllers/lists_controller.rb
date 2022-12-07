@@ -2,6 +2,11 @@ class ListsController < ApplicationController
   before_action :set_list, only: [:show, :destroy]
   before_action :set_list_bookmark, only: [:show]
   before_action :set_reviews, only: [:show]
+  def home
+    # select the 3 most recent lists
+    @lists = List.last(3)
+  end
+
   def index
     @lists = List.all
   end
