@@ -1,0 +1,35 @@
+ <div class="banner d-flex justify-content-center" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @movie.poster_url %>);">
+ <h1 class="fw-bolder fs-1 text center"><%= @movie.title %></h1>
+</div>
+<div class="container my-3">
+  <h3><%= @movie.rating %><i class="fa-solid fa-star text-info"></i></h3>
+  <div class="d-flex justify-content-between">
+    <div class="form-card">
+      <h1 class="text-center">Commentaires</h1>
+      <% @reviews.each do |review| %>
+        <div class="card">
+          <div class="card-body">
+            <p class="text-end"><%= review.rating %><i class="fa-solid fa-star text-info"></i></p>
+            <p><%= review.content %></p>
+            <p class="card-text text-end"><small class="text-muted"><%= review.created_at.strftime('%d/%m/%Y') %></small></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form-card">
+      <h1 class="text-center">Créer un commentaire</h1>
+      <%= simple_form_for [@movie, @review] do |f| %>
+        <div class="p-3">
+          <%= f.input :content, label:"Commentaire", placeholder:"Laissez votre commentaire ", require:true %>
+        </div>
+        <div class="p-3">
+          <%= f.input :rating, collection: 0..5, require:true %>
+        </div>
+        <div class="p-3">
+          <%= f.submit "Créer un commentaire", class: "btn btn-flat" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

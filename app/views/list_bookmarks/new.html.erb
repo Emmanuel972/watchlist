@@ -1,0 +1,16 @@
+<div class="banner-form" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.arts-in-the-city.com/wp-content/uploads/2022/01/salle-de-cinema-le-cinema-de-personne-1320.png);">
+  <div class="form-card">
+    <h1 class="text-center">Ajouter un film</h1>
+    <%= simple_form_for [@list, @list_bookmark] do |f| %>
+      <div class="p-3">
+        <%= f.association :movie %>
+      </div>
+      <div class="p-3">
+        <%= f.input :comment, label:"Commentaire", placeholder:"Votre commentaire", require:true %>
+      </div>
+      <div class="p-3">
+        <%= f.submit "Ajouter le film", class: "btn btn-flat" %>
+      </div>
+    <% end %>
+  </div>
+</div>

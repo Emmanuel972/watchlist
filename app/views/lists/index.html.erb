@@ -1,0 +1,21 @@
+<%= render "/components/home_banner" %>
+<div class="container">
+  <div class="d-flex justify-content-end m-3">
+  <%= link_to "Créer une liste", new_list_path, class: "btn btn-primary" %>
+  </div>
+  <div class="row row-cols-3">
+  <% @lists.each do |list| %>
+    <%=link_to list_path(list), class: "text-decoration-none" do %>
+      <div class="col">
+        <% if list.picture.present? %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%=  list.picture.url %>)">
+        <% else %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://www.lambesc.fr/fileadmin/user_upload/cinema.jpg)">
+        <% end %>
+          <h3 class="card-text text-center text-white"><%= list.name %></h3>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  </div>
+</div>
